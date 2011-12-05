@@ -1,3 +1,10 @@
+#<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !(.*)\.(js|css|jpg|png|swf)
+RewriteRule ^(.*)$ index.php [QSA]
+#</IfModule>
 # Apache configuration file
 # httpd.apache.org/docs/2.2/mod/quickreference.html
 
@@ -287,10 +294,10 @@ FileETag None
 # Turning on the rewrite engine is necessary for the following rules and features.
 # FollowSymLinks must be enabled for this to work.
 
-<IfModule mod_rewrite.c>
-  Options +FollowSymlinks
-  RewriteEngine On
-</IfModule>
+#<IfModule mod_rewrite.c>
+#  Options +FollowSymlinks
+#  RewriteEngine On
+#</IfModule>
 
 
 
@@ -314,11 +321,11 @@ FileETag None
 # Option 1:
 # Rewrite "www.domain.com -> domain.com" 
 
-<IfModule mod_rewrite.c>
-  RewriteCond %{HTTPS} !=on
-  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#  RewriteCond %{HTTPS} !=on
+#  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#  RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+#</IfModule>
 
 # ----------------------------------------------------------------------
 
@@ -422,9 +429,9 @@ Options -Indexes
 
 # Block access to "hidden" directories whose names begin with a period. This
 # includes directories used by version control systems such as Subversion or Git.
-<IfModule mod_rewrite.c>
-  RewriteRule "(^|/)\." - [F]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#  RewriteRule "(^|/)\." - [F]
+#</IfModule>
 
 
 # If your server is not already configured as such, the following directive
@@ -483,13 +490,4 @@ Options -Indexes
 # Increase cookie security
 <IfModule php5_module>
 	php_value session.cookie_httponly true
-</IfModule>
-
-
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-
-RewriteCond %{REQUEST_URI} !(.*)\.(js|css|jpg|png|swf)
-RewriteRule ^(.*)$ index.php [QSA]
 </IfModule>
