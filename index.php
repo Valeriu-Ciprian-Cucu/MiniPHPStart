@@ -13,9 +13,13 @@
 
 		return $uri;
 	}
+	
+	global $content = getcwd();
 
 	if (array_key_exists(_get_path()), $_routes)) {
 		
 		include $_routes[_get_path()];
+	} else {
+		$content = '/404error.phtml';
 	}	
 ?>
