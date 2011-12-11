@@ -1,6 +1,8 @@
-RewriteEngine On
-#RewriteBase /
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	#RewriteBase /
 
-RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteCond %{SCRIPT_FILENAME} !\.(js|css|jpg|png|swf)$
-RewriteRule ^(.*)$ index.php [QSA,L]
+	#add other file types which you wish to have serverd as static files
+	RewriteCond %{SCRIPT_FILENAME} !\.(js|css|jpg|png|swf)$
+	RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
